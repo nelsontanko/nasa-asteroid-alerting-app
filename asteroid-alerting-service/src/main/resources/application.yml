@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: asteroid-alerting-service
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9094}
+    template:
+      default-topic: asteroid-alert
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 3
+      properties:
+        linger.ms: 1
+
+nasa:
+  neo:
+    url: ${NASA_NEO_URL:https://api.nasa.gov/neo/rest/v1/feed}
+  apiKey: ${NASA_API_KEY:DEMO_KEY}
+
+
